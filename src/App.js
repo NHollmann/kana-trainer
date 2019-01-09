@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Hiragana from './components/Hiragana';
+import Typer from './components/Typer';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            symbol: ''
+        };
+    }
+
+    onTyperEnter(str) {
+        this.setState({ symbol: str });
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <p>What is the transcription for:</p>
+                <Hiragana symbol={this.state.symbol} />
+                <Typer onEnter={this.onTyperEnter.bind(this)} />
+            </div>
+        );
+    }
 }
 
 export default App;
