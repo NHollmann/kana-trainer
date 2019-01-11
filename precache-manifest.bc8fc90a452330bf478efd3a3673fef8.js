@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/kana-trainer/static/js/runtime~main.d3ea86a7.js"
   },
   {
-    "revision": "cb0aa06e7edc65b545b7",
-    "url": "/kana-trainer/static/js/main.cb0aa06e.chunk.js"
+    "revision": "72accca4cc6ef1b0abcb",
+    "url": "/kana-trainer/static/js/main.72accca4.chunk.js"
   },
   {
     "revision": "addbdd3f83a0bfbb26b0",
     "url": "/kana-trainer/static/js/1.addbdd3f.chunk.js"
   },
   {
-    "revision": "cb0aa06e7edc65b545b7",
-    "url": "/kana-trainer/static/css/main.755c2b1b.chunk.css"
+    "revision": "72accca4cc6ef1b0abcb",
+    "url": "/kana-trainer/static/css/main.b51437cd.chunk.css"
   },
   {
-    "revision": "cfdfb1f687344a78b9c5499a87d62531",
+    "revision": "6a6753a43535a76cda41eb368cb7b088",
     "url": "/kana-trainer/index.html"
   }
 ];
