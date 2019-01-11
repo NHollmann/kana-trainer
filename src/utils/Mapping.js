@@ -1,5 +1,7 @@
 
-
+/**
+ * Two-way mapping utility class for kana transcription.
+ */
 class Mapping {
     constructor(map) {
         this.map = map;
@@ -17,10 +19,6 @@ class Mapping {
             console.warn('Trying to access non existent transcription.');
             return '❌';
         }
-    }
-
-    transcriptionExists(transcript) {
-        return transcript in this.map;
     }
 
     getByKana(kana) {

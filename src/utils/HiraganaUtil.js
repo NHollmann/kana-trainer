@@ -1,5 +1,8 @@
 import Mapping from './Mapping';
 
+/**
+ * The transcription mapping for hiragana.
+ */
 class HiraganaUtil extends Mapping {
     constructor() {
         super({

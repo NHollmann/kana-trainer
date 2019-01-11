@@ -4,7 +4,20 @@ import Typer from './Typer';
 import HiraganaUtil from '../utils/HiraganaUtil';
 import RandomUtil from '../utils/RandomUtil';
 
+const learningBlocks = [
+    ["ka","ki","ku","ke","ko"],
+    ["sa","shi","su","se","so"],
+    ["ta","chi","tsu","te","to"],
+    ["na","ni","nu","ne","no"],
+    ["ha","hi","fu","he","ho"],
+    ["ma","mi","mu","me","mo"],
+    ["ya","yu","yo"],
+    ["ra","ri","ru","re","ro"],
+    ["wa","wi","we","wo"]
+];
+
 class Hiragana extends Component {
+    
     constructor(props) {
         super(props);
 
@@ -21,7 +34,7 @@ class Hiragana extends Component {
 
         try {
             this.characters = JSON.parse(localStorage.getItem('hiragana')) || defaultStart;
-        } catch (error) {
+        } catch {
             this.characters = defaultStart;
         }
 
@@ -43,7 +56,23 @@ class Hiragana extends Component {
         this.characters[id].solved++;
 
         if (this.totalSolved() / this.characters.length >= Math.floor(this.characters.length * 1.25)) {
-            console.log("Adding more kanas");
+            let block;
+            try {
+                block = JSON.parse(localStorage.getItem('hiraganaBlock') || "0");
+            } catch {
+                block = 0;
+            }
+
+            if (block < learningBlocks.length) {
+                const newKanas = learningBlocks[block].map((x) => {
+                    return {transcription: x, solved: 0};
+                });
+                
+                this.characters = this.characters.concat(newKanas);
+                block++;
+
+                localStorage.setItem('hiraganaBlock', block);
+            }
         }
 
         localStorage.setItem('hiragana', JSON.stringify(this.characters));
