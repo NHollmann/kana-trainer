@@ -21,7 +21,9 @@ class Typer extends Component {
             }
             newText = '';
         } else {
-            newText += keyName;
+            if (!this.props.locked) {
+                newText += keyName;
+            }
         }
 
         this.setState({ text: newText });

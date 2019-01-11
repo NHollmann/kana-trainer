@@ -11,12 +11,16 @@ class Mapping {
     }
 
     getByTranscription(transcript) {
-        if (this.map[transcript]) {
+        if (transcript in this.map) {
             return this.map[transcript];
         } else {
             console.warn('Trying to access non existent transcription.');
             return '❌';
         }
+    }
+
+    transcriptionExists(transcript) {
+        return transcript in this.map;
     }
 
     getByKana(kana) {
