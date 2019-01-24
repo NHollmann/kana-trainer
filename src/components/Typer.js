@@ -23,6 +23,10 @@ class Typer extends Component {
         } else {
             if (!this.props.locked) {
                 newText += keyName;
+
+                if (this.props.onChange(newText)) {
+                    newText = '';
+                }
             }
         }
 

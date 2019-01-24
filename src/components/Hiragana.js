@@ -112,12 +112,22 @@ class Hiragana extends Component {
         return this.characters[id].transcription;
     }
 
+    onTyperChange(str) {
+        if (str.length >= 1) {
+            if (str === this.state.transcription) {
+                this.onTyperEnter(str);
+                return true;
+            }
+        }
+        return false;
+    }
+
     onTyperEnter(str) {
         if (this.state.state === 'waiting') {
             if (str === this.state.transcription) {
                 this.kanaSolved();
                 this.setState({
-                    message: 'You\'re right!', 
+                    message: 'You\'re right! It was "' + this.state.transcription + '".', 
                     state: 'next',
                     symbol: RandomUtil.getRandom(this.positive)
                 });
@@ -145,7 +155,7 @@ class Hiragana extends Component {
             <div>
                 <p>{this.state.message}</p>
                 <Kana value={this.state.symbol} />
-                <Typer locked={this.state.state === 'next'} onEnter={this.onTyperEnter.bind(this)} />
+                <Typer locked={this.state.state === 'next'} onChange={this.onTyperChange.bind(this)} onEnter={this.onTyperEnter.bind(this)} />
             </div>
         );
     }
