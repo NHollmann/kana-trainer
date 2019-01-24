@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/kana-trainer/precache-manifest.ec5c26f759178d21ed0b503738e17dd3.js"
+  "/kana-trainer/precache-manifest.d2acad5bb8a92749a0fb054a3870af69.js"
 );
 
 workbox.clientsClaim();
