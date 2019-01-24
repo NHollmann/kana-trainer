@@ -138,6 +138,10 @@ class Hiragana extends Component {
                     symbol: RandomUtil.getRandom(this.negative)
                 });
             }
+
+            window.setTimeout(() => {
+                this.onTyperEnter('');
+            }, 700);
         } else {
             const transcription = this.getRandomKana();
 
