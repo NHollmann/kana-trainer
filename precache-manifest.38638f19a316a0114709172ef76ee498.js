@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/kana-trainer/static/css/main.b51437cd.chunk.css"
   },
   {
-    "revision": "327993666453d74e19abd1f58585aeb8",
+    "revision": "76809379fd046bd2d4fe3a21744b9627",
     "url": "/kana-trainer/index.html"
   }
 ];
