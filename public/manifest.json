@@ -44,8 +44,10 @@
       "density": "4.0"
     }
   ],
-  "start_url": ".",
+  "start_url": "index.html",
   "display": "standalone",
   "theme_color": "#dddfe2",
-  "background_color": "#dddfe2"
+  "background_color": "#dddfe2",
+  "orientation": "portrait",
+  "scope": "/kana-trainer/"
 }
