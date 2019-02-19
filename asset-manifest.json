@@ -1,13 +1,13 @@
 {
-  "main.css": "/kana-trainer/static/css/main.b51437cd.chunk.css",
-  "main.js": "/kana-trainer/static/js/main.a02b4fb6.chunk.js",
-  "main.js.map": "/kana-trainer/static/js/main.a02b4fb6.chunk.js.map",
-  "static/js/1.addbdd3f.chunk.js": "/kana-trainer/static/js/1.addbdd3f.chunk.js",
-  "static/js/1.addbdd3f.chunk.js.map": "/kana-trainer/static/js/1.addbdd3f.chunk.js.map",
-  "runtime~main.js": "/kana-trainer/static/js/runtime~main.d3ea86a7.js",
-  "runtime~main.js.map": "/kana-trainer/static/js/runtime~main.d3ea86a7.js.map",
-  "static/css/main.b51437cd.chunk.css.map": "/kana-trainer/static/css/main.b51437cd.chunk.css.map",
+  "main.css": "/kana-trainer/static/css/main.621c18b2.chunk.css",
+  "main.js": "/kana-trainer/static/js/main.28498b27.chunk.js",
+  "main.js.map": "/kana-trainer/static/js/main.28498b27.chunk.js.map",
+  "runtime~main.js": "/kana-trainer/static/js/runtime~main.af5979fd.js",
+  "runtime~main.js.map": "/kana-trainer/static/js/runtime~main.af5979fd.js.map",
+  "static/js/2.576de807.chunk.js": "/kana-trainer/static/js/2.576de807.chunk.js",
+  "static/js/2.576de807.chunk.js.map": "/kana-trainer/static/js/2.576de807.chunk.js.map",
   "index.html": "/kana-trainer/index.html",
-  "precache-manifest.38638f19a316a0114709172ef76ee498.js": "/kana-trainer/precache-manifest.38638f19a316a0114709172ef76ee498.js",
-  "service-worker.js": "/kana-trainer/service-worker.js"
+  "precache-manifest.a0102b1838cb19c2a763d97168bda621.js": "/kana-trainer/precache-manifest.a0102b1838cb19c2a763d97168bda621.js",
+  "service-worker.js": "/kana-trainer/service-worker.js",
+  "static/css/main.621c18b2.chunk.css.map": "/kana-trainer/static/css/main.621c18b2.chunk.css.map"
 }
