@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Kana from './Kana';
 import Typer from './Typer';
-import HiraganaUtil from '../utils/HiraganaUtil';
-import RandomUtil from '../utils/RandomUtil';
+import HiraganaUtil from '../../utils/HiraganaUtil';
+import RandomUtil from '../../utils/RandomUtil';
 
 const learningBlocks = [
     ["ka","ki","ku","ke","ko"],
