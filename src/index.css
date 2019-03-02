@@ -14,5 +14,20 @@ body {
 }
 
 .kanaTable {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
 
+.kanaTable td {
+  border: 1px solid #e6e6e6;
+  font-size: 2em;
+  line-height: 1em;
+  padding: 5px;
+}
+
+.kanaTable td span {
+  color: #888888;
+  font-size: 0.5em;
+  line-height: 0.9em;
 }

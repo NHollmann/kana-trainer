@@ -1,30 +1,30 @@
 import Mapping from './Mapping';
 
 /**
- * The transcription mapping for hiragana.
+ * The transcription mapping for katakana.
  */
-class HiraganaUtil extends Mapping {
+class KatakanaUtil extends Mapping {
     constructor() {
         super({
-            'n': 'ん',
+            'n': '',
 
-            'a': 'あ',
-            'i': 'い',
-            'u': 'う',
-            'e': 'え',
-            'o': 'お',
+            'a': '',
+            'i': '',
+            'u': '',
+            'e': '',
+            'o': '',
 
-            'ka': 'か',
-            'ki': 'き',
-            'ku': 'く',
-            'ke': 'け',
-            'ko': 'こ',
+            'ka': '',
+            'ki': '',
+            'ku': '',
+            'ke': '',
+            'ko': '',
 
-            'sa': 'さ',
-            'shi': 'し',
-            'su': 'す',
-            'se': 'せ',
-            'so': 'そ',
+            'sa': '',
+            'shi': '',
+            'su': '',
+            'se': '',
+            'so': '',
 
             'ta': 'た',
             'chi': 'ち',
@@ -93,7 +93,7 @@ class HiraganaUtil extends Mapping {
             'pe': 'ぺ',
             'po': 'ぽ',
 
-            'vu': 'ゔ',
+            'vu': '',
 
             'kya': '',
             'kyu': '',
@@ -146,4 +146,4 @@ class HiraganaUtil extends Mapping {
     }
 }
 
-export default HiraganaUtil;
+export default KatakanaUtil;

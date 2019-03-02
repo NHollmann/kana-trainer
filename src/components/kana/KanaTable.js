@@ -14,7 +14,8 @@ function KanaTable({ transcription, mapping }) {
                                 }
                                 return (
                                     <td key={index}>
-                                        {value.replace('_', '')} {mapping.getByTranscription(value)}
+                                        {mapping.getByTranscription(value)}
+                                        <br/><span>{value.replace('_', '')}</span>
                                     </td>
                                 );
                             })}
