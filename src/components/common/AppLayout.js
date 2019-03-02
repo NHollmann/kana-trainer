@@ -172,7 +172,9 @@ class AppLayout extends React.Component {
                 </nav>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    {this.props.children}
+                    <div className="scrollBounce">
+                        {this.props.children}
+                    </div>
                 </main>
             </div>
         );
