@@ -10,6 +10,8 @@ class TrainingSettings extends React.Component {
         super(props);
 
         this.state = {
+            hiragana: ['vowels'],
+            katakana: [],
         };
     }
 
@@ -24,7 +26,14 @@ class TrainingSettings extends React.Component {
         });
     }
 
+    selectionChange(kana, selection) {
+        this.setState({
+            [kana]: selection
+        });
+    }
+
     render() {
+        const { hiragana, katakana } = this.state;
         return (
             <Grid container spacing={24}>
                 <Grid item xs={12}>
@@ -41,10 +50,18 @@ class TrainingSettings extends React.Component {
                     </ContentCard>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <KanaSelectionCard kana="Hiragana" />
+                    <KanaSelectionCard 
+                        kana="Hiragana" 
+                        selection={hiragana} 
+                        onChange={(selection) => {this.selectionChange('hiragana', selection)}}
+                    />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <KanaSelectionCard kana="Katakana" />
+                    <KanaSelectionCard 
+                        kana="Katakana" 
+                        selection={katakana} 
+                        onChange={(selection) => {this.selectionChange('katakana', selection)}}
+                    />
                 </Grid>
             </Grid>
         );

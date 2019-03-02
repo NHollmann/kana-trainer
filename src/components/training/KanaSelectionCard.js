@@ -14,7 +14,7 @@ const digraphs = ['k', 's', 't', 'n', 'h', 'm', 'r'];
 const digraphDiacritics = ['g', 'z', 'd', 'b', 'p'];
 
 function KanaPanel(props) {
-    const { description, kana, list } = props;
+    const { description, kana, list, prefix, onChange, selection } = props;
 
     return (
         <ExpansionPanel>
@@ -24,11 +24,16 @@ function KanaPanel(props) {
             <ExpansionPanelDetails>
                 <FormGroup>
                     {list.map(value => {
+                        const key = `${prefix}${value}`;
                         return (
                             <FormControlLabel
-                                key={value}
+                                key={key}
                                 control={
-                                    <Checkbox checked={true} value="jason" />
+                                    <Checkbox 
+                                        checked={selection.includes(key)} 
+                                        value={key} 
+                                        onChange={onChange} 
+                                    />
                                 }
                                 label={`'${value}'-${kana}`}
                             />
@@ -41,32 +46,67 @@ function KanaPanel(props) {
 }
 
 function KanaSelectionCard(props) {
-    const { kana } = props;
+    const { kana, selection } = props;
+
+    function handleChange(event) {
+        let newSelection = [...selection];
+        const newValue = event.target.value;
+        if (event.target.checked && !newSelection.includes(newValue)) {
+            newSelection.push(newValue);
+        } else {
+            const index = newSelection.indexOf(newValue);
+            if (index > -1) {
+                newSelection.splice(index, 1);
+            }
+        }
+        props.onChange(newSelection);
+    }
+
+    function selectAll() {
+        let newSelection = ['vowels'];
+
+        const selReduce = (prefix) => (sel, letter) => {sel.push(prefix + letter); return sel;}
+
+        newSelection = consonants.reduce(selReduce("mono-"), newSelection);
+        newSelection = diacritics.reduce(selReduce("mono-dia-"), newSelection);
+        newSelection = digraphs.reduce(selReduce("di-"), newSelection);
+        newSelection = digraphDiacritics.reduce(selReduce("di-dia-"), newSelection);
+
+        props.onChange(newSelection);
+    }
+
+    function deselectAll() {
+        props.onChange([]);
+    }
 
     return (
         <ContentCard>
             <FormControl component="fieldset" style={{width: '100%'}} >
                 <FormLabel component="legend">{kana}</FormLabel>
                 <br/>
-                <Button color="secondary">
+                <Button color="secondary" onClick={selectAll}>
                     Select all
                 </Button>
-                <Button color="secondary">
+                <Button color="secondary" onClick={deselectAll}>
                     Deselect all
                 </Button>
                 <FormGroup>
                     <FormControlLabel
                         control={
-                            <Checkbox checked={true} value="vowels" />
+                            <Checkbox checked={selection.includes('vowels')} onChange={handleChange} value="vowels" />
                         }
                         label="Vowels and 'n'"
                     />
                 </FormGroup>
 
-                <KanaPanel kana={kana} description={`${kana} belonging to consonants.`} list={consonants} />
-                <KanaPanel kana={kana} description={`${kana} diacritics.`} list={diacritics} />
-                <KanaPanel kana={kana} description={`${kana} digraphs.`} list={digraphs} />
-                <KanaPanel kana={kana} description={`${kana} digraphs with diacritics.`} list={digraphDiacritics} />
+                <KanaPanel kana={kana} onChange={handleChange} prefix="mono-" selection={selection}
+                    description={`${kana} belonging to consonants.`} list={consonants} />
+                <KanaPanel kana={kana} onChange={handleChange} prefix="mono-dia-" selection={selection}
+                    description={`${kana} diacritics.`} list={diacritics} />
+                <KanaPanel kana={kana} onChange={handleChange} prefix="di-" selection={selection}
+                    description={`${kana} digraphs.`} list={digraphs} />
+                <KanaPanel kana={kana} onChange={handleChange} prefix="di-dia-" selection={selection}
+                    description={`${kana} digraphs with diacritics.`} list={digraphDiacritics} />
             </FormControl>
         </ContentCard>
     );

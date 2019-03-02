@@ -1,4 +1,4 @@
-# kana-trainer
+# Kana Trainer
 
 A simple react application to learn hiragana and katakana.
 
