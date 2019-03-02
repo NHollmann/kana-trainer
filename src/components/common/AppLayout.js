@@ -139,7 +139,7 @@ class AppLayout extends React.Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit" noWrap>
-                            Kana Trainer / {this.props.title}
+                            Kana Trainer → {this.props.title}
                         </Typography>
                     </Toolbar>
                 </AppBar>

@@ -1,19 +1,13 @@
 import React from 'react';
 import AppLayout from '../common/AppLayout';
-import Typography from '@material-ui/core/Typography';
+import InfoCard from '../common/InfoCard';
 
 function Info() {
     return (
         <AppLayout title="Info">
-            <Typography variant="h4">
-                Kana Trainer
-            </Typography>
-            <Typography variant="h6" gutterBottom>
-                by Nicolas Hollmann
-            </Typography>
-            <Typography paragraph>
+            <InfoCard title="Kana Trainer" subtitle="by Nicolas Hollmann">
                 This is a training application for learning japaneese kanas.
-            </Typography>
+            </InfoCard>
         </AppLayout>
     );
 }
