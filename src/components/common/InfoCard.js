@@ -4,6 +4,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import ExternalLink from './ExternalLink';
 
 
 function InfoCard({ title, subtitle, children, extLink }) {
@@ -22,9 +23,9 @@ function InfoCard({ title, subtitle, children, extLink }) {
             </CardContent>
             {(extLink) ?
                 <CardActions>
-                    <a href={extLink} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
+                    <ExternalLink href={extLink} button>
                         <Button size="small">Learn More</Button>
-                    </a>
+                    </ExternalLink>
                 </CardActions>
                 : null}
         </Card>

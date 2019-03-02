@@ -20,6 +20,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import ExternalLink from './ExternalLink';
 
 const drawerWidth = 240;
 
@@ -111,16 +112,14 @@ class AppLayout extends React.Component {
                             <ListItemText primary="Settings" />
                         </ListItem>
                     </Link>
-                    <a
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <ExternalLink
                         href="https://github.com/NHollmann/kana-trainer"
-                        style={{ textDecoration: 'none' }}>
+                        button>
                         <ListItem button>
                             <ListItemIcon><CodeIcon /></ListItemIcon>
                             <ListItemText primary="Sourcecode" />
                         </ListItem>
-                    </a>
+                    </ExternalLink>
                 </List>
             </div>
         );
