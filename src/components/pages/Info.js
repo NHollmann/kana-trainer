@@ -6,7 +6,7 @@ function Info() {
     return (
         <AppLayout title="Info">
             <InfoCard title="Kana Trainer" subtitle="by Nicolas Hollmann">
-                This is a training application for learning japaneese kanas.
+                This is a training application for learning japanese kanas.
             </InfoCard>
         </AppLayout>
     );
