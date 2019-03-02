@@ -4,20 +4,29 @@ import { Grid, Typography, Button } from '@material-ui/core';
 import KanaSelectionCard from './KanaSelectionCard';
 import ContentCard from '../common/ContentCard';
 
+const HIRAGANA_SELECTION = 'kanaTrainer_hiraganaSelection';
+const KATAKANA_SELECTION = 'kanaTrainer_katakanaSelection';
 
 class TrainingSettings extends React.Component {
     constructor(props) {
         super(props);
 
+        let hiragana = ['vowels'];
+        let katakana = [];
+
+        try {
+            hiragana = JSON.parse(localStorage.getItem(HIRAGANA_SELECTION)) || ['vowels'];
+        } catch {}
+
+        try {
+            katakana = JSON.parse(localStorage.getItem(KATAKANA_SELECTION)) || [];
+        } catch {}
+
         this.state = {
-            hiragana: ['vowels'],
-            katakana: [],
+            hiragana,
+            katakana,
         };
     }
-
-    handleChange = name => event => {
-        this.setState({ [name]: event.target.checked });
-    };
 
     startTraining() {
         this.props.onStart({
@@ -27,6 +36,12 @@ class TrainingSettings extends React.Component {
     }
 
     selectionChange(kana, selection) {
+        let localStorageKey = HIRAGANA_SELECTION;
+        if (kana === 'katakana') {
+            localStorageKey = KATAKANA_SELECTION;
+        }
+        localStorage.setItem(localStorageKey, JSON.stringify(selection));
+
         this.setState({
             [kana]: selection
         });
