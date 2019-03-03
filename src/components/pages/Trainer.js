@@ -9,19 +9,33 @@ class Trainer extends React.Component {
 
         this.state = {
             trainingMode: false,
+            trainingConfig: {
+                hiragana: [],
+                katakana: []
+            },
         };
     }
 
     startTraining(config) {
-        this.setState({trainingMode: true});
+        this.setState({
+            trainingMode: true,
+            trainingConfig: config
+        });
+    }
+
+    stopTraining() {
+        this.setState({
+            trainingMode: false
+        });
     }
 
     render() {
+        const { trainingMode, trainingConfig } = this.state;
         return (
             <AppLayout title="Trainer">
-                {this.state.trainingMode ? 
-                <TrainingMode /> : 
-                <TrainingSettings onStart={(config) => {this.startTraining(config)}} />}
+                {trainingMode ? 
+                <TrainingMode onStop={() => this.stopTraining()} config={trainingConfig} /> : 
+                <TrainingSettings onStart={(config) => this.startTraining(config)} />}
             </AppLayout>
         );
     }
