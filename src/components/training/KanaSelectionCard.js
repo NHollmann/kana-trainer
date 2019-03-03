@@ -7,11 +7,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import ContentCard from '../common/ContentCard';
 import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails, Button } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-const consonants = ['k', 's', 't', 'n', 'h', 'm', 'y', 'r', 'w'];
-const diacritics = ['g', 'z', 'd', 'b', 'p'];
-const digraphs = ['k', 's', 't', 'n', 'h', 'm', 'r'];
-const digraphDiacritics = ['g', 'z', 'd', 'b', 'p'];
+import { consonants, diacritics, digraphs, digraphDiacritics } from '../../utils/Mapping';
 
 function KanaPanel(props) {
     const { description, kana, list, prefix, onChange, selection } = props;

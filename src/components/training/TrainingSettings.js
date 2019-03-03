@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Grid, Typography, Button } from '@material-ui/core';
 import KanaSelectionCard from './KanaSelectionCard';
 import ContentCard from '../common/ContentCard';
+import Mapping from '../../utils/Mapping';
 
 const HIRAGANA_SELECTION = 'kanaTrainer_hiraganaSelection';
 const KATAKANA_SELECTION = 'kanaTrainer_katakanaSelection';
@@ -30,8 +31,8 @@ class TrainingSettings extends React.Component {
 
     startTraining() {
         this.props.onStart({
-            hiragana: [],
-            katakana: [],
+            hiragana: Mapping.getTranscriptionList(this.state.hiragana),
+            katakana: Mapping.getTranscriptionList(this.state.katakana),
         });
     }
 
@@ -59,7 +60,12 @@ class TrainingSettings extends React.Component {
                         <Typography paragraph gutterBottom>
                             You can cusotmize your training experience with the settings below.
                         </Typography>
-                        <Button variant="contained" onClick={() => this.startTraining()} color="primary">
+                        <Button 
+                            variant="contained" 
+                            onClick={() => this.startTraining()} 
+                            disabled={hiragana.length + katakana.length === 0}
+                            color="primary"
+                        >
                             Start training
                         </Button>
                     </ContentCard>
