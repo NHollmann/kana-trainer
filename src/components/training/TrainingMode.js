@@ -4,6 +4,9 @@ import ContentCard from '../common/ContentCard';
 import HiraganaUtil from '../../utils/HiraganaUtil';
 import KatakanaUtil from '../../utils/KatakanaUtil';
 import RandomUtil from '../../utils/RandomUtil';
+import RateDataView from '../common/RateDataView';
+
+const USAGE_DATA = 'kanaTrainer_usageData';
 
 const TrainingState = Object.freeze({
     INPUT: Symbol("input"),
@@ -29,12 +32,25 @@ class TrainingMode extends React.Component {
         
         this.characters = hiraganaChars.concat(katakanaChars);
 
+        let totalSuccessCount = 0;
+        let totalFailureCount = 0;
+
+        try {
+            const usageData = JSON.parse(localStorage.getItem(USAGE_DATA)) || {success: 0, failure: 0};
+            totalSuccessCount = usageData.success || 0;
+            totalFailureCount = usageData.failure || 0;
+        } catch {}
+
         this.state = {
             inputVal: '',
             targetVal: '',
             symbolDisplay: '',
             message: '',
-            state: TrainingState.INPUT
+            state: TrainingState.INPUT,
+            successCount: 0,
+            failureCount: 0,
+            totalSuccessCount,
+            totalFailureCount,
         };
     }
 
@@ -67,8 +83,15 @@ class TrainingMode extends React.Component {
         this.setState({
             state: TrainingState.RESULT,
             message: 'You\'re right!',
-            symbolDisplay: RandomUtil.getRandom(this.positive)
+            symbolDisplay: RandomUtil.getRandom(this.positive),
+            successCount: this.state.successCount + 1,
+            totalSuccessCount: this.state.totalSuccessCount + 1,
         });
+
+        localStorage.setItem(USAGE_DATA, JSON.stringify({
+            success: this.state.totalSuccessCount + 1, 
+            failure: this.state.totalFailureCount
+        }));
 
         window.setTimeout(() => this.selectNewKana(), 700);
     }
@@ -77,8 +100,15 @@ class TrainingMode extends React.Component {
         this.setState({
             state: TrainingState.RESULT,
             message: 'Wrong! ' + this.state.symbolDisplay + ' would be "' + this.state.targetVal + '".',
-            symbolDisplay: RandomUtil.getRandom(this.negative)
+            symbolDisplay: RandomUtil.getRandom(this.negative),
+            failureCount: this.state.failureCount + 1,
+            totalFailureCount: this.state.totalFailureCount + 1,
         });
+
+        localStorage.setItem(USAGE_DATA, JSON.stringify({
+            success: this.state.totalSuccessCount, 
+            failure: this.state.totalFailureCount + 1
+        }));
 
         window.setTimeout(() => this.selectNewKana(), 1200);
     }
@@ -148,12 +178,17 @@ class TrainingMode extends React.Component {
 
     render() {
         const { inputVal, symbolDisplay, message, state } = this.state;
+        const { successCount, failureCount, totalSuccessCount, totalFailureCount } = this.state;
         return (
             <Grid container spacing={24}>
                 <Grid item xs={12} >
                     <ContentCard>
                         <Typography variant="h4" gutterBottom>
                             Kana Training
+                        </Typography>
+                        <Typography paragraph>
+                            This training: <RateDataView success={successCount} failure={failureCount} /><br />
+                            All trainings: <RateDataView success={totalSuccessCount} failure={totalFailureCount} />
                         </Typography>
                         <Button variant="contained" color="primary" onClick={() => this.stopTraining()}>
                             Stop Training
