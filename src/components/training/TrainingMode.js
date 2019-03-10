@@ -18,7 +18,7 @@ class TrainingMode extends React.Component {
         super(props);
 
         this.positive = ['👍🏻', '🍻', '🥂', '🏆', '🏅', '✅', '🆗', '🎯', '🎉', '🎊'];
-        this.negative = ['❌','😦', '🚫', '⁉️', '⚠️', '☠️'];
+        this.negative = ['❌', '😦', '🚫', '⁉️', '⚠️', '☠️'];
 
         this.inputTextField = React.createRef();
 
@@ -44,6 +44,7 @@ class TrainingMode extends React.Component {
         this.state = {
             inputVal: '',
             targetVal: '',
+            targetId: 0,
             symbolDisplay: '',
             message: '',
             state: TrainingState.INPUT,
@@ -62,15 +63,16 @@ class TrainingMode extends React.Component {
         const newKana = this.getRandomKana();
         let symbol = '';
 
-        if (newKana.kana === 'Hiragana') {
-            symbol = this.hiragana.getByTranscription(newKana.transcription);
+        if (newKana.char.kana === 'Hiragana') {
+            symbol = this.hiragana.getByTranscription(newKana.char.transcription);
         } else {
-            symbol = this.katakana.getByTranscription(newKana.transcription);
+            symbol = this.katakana.getByTranscription(newKana.char.transcription);
         }
 
         this.setState({
             inputVal: '',
-            targetVal: newKana.transcription.replace('_', ''),
+            targetVal: newKana.char.transcription.replace('_', ''),
+            targetId: newKana.id,
             symbolDisplay: symbol,
             message: 'What is the transcription for the displayed kana?',
             state: TrainingState.INPUT
@@ -80,6 +82,8 @@ class TrainingMode extends React.Component {
     }
 
     showSuccess() {
+        this.characters[this.state.targetId].solved++;
+
         this.setState({
             state: TrainingState.RESULT,
             message: 'You\'re right!',
@@ -145,7 +149,7 @@ class TrainingMode extends React.Component {
                 this.state && 
                 this.state.targetVal === this.characters[id].transcription); // This ignores Hiragana vs Katakana
 
-        return this.characters[id];
+        return { id, char: this.characters[id] };
     }
 
     stopTraining() {
